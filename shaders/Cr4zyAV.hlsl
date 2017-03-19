@@ -213,18 +213,18 @@ float4 SFXDarkVisionPS(PS_INPUT input) : COLOR0
 		}
 	}
 	if (fogShade == 1){
-		colourModel = clamp(colourFog * float4(1.2,1.2,1.2,0),0,1);
+		colourModel = clamp(colourFog * float4(1.2,1.2,1.2,0),(float4)0,(float4)1);
 	}
 	else {
 		if (strongestColour > .1){
 			if (colourFog.r == strongestColour){
-				colourModel = clamp(colourFog * float4(1.5,0,0,0),0,1);
+				colourModel = clamp(colourFog * float4(1.5,0,0,0),(float4)0,(float4)1);
 			}
 			if (colourFog.g == strongestColour){
-				colourModel = clamp(colourFog * float4(0,1.5,0,0),0,1);
+				colourModel = clamp(colourFog * float4(0,1.5,0,0),(float4)0,(float4)1);
 			}
 			if (colourFog.b == strongestColour){
-				colourModel = clamp(colourFog * float4(0,0,1.5,0),0,1);
+				colourModel = clamp(colourFog * float4(0,0,1.5,0),(float4)0,(float4)1);
 			}
 		}
 	}
@@ -275,7 +275,7 @@ float4 SFXDarkVisionPS(PS_INPUT input) : COLOR0
 			}
 			else {
 				//old style coloured
-				return (max(inputPixel,edge) + desaturate * desatIntensity) * clamp(((colourOne * (fadedist * 10)) + (colourTwo * (.75-fadedist))),0,1) +	( ((model *  2 * (0.2 + 0.2 * pow(0.1 + sin(time * 5 + intensity * 2), 2)) * fadedist*.5 ) * colourModel) + ((model * edge * edge) * (colourFog * (fadedist *60))) + ((model * edge * edge * 80) * (colourModel * (fadedist * 20))) );
+				return (max(inputPixel,edge) + desaturate * desatIntensity) * clamp(((colourOne * (fadedist * 10)) + (colourTwo * (.75-fadedist))),(float4)0,(float4)1) +	( ((model *  2 * (0.2 + 0.2 * pow(0.1 + sin(time * 5 + intensity * 2), 2)) * fadedist*.5 ) * colourModel) + ((model * edge * edge) * (colourFog * (fadedist *60))) + ((model * edge * edge * 80) * (colourModel * (fadedist * 20))) );
 			}
 		}
 		else {

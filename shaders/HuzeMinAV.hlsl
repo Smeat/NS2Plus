@@ -89,6 +89,6 @@ float4 SFXDarkVisionPS(PS_INPUT input) : COLOR0
     else // world geometry
     {
         float edge = abs(depth5 - depth1.r );
-        return lerp(inputPixel, edge, 0.01);
+        return lerp(inputPixel, edge, 0.01); //FIXME: Doesn't work on Linux
     }
 }
